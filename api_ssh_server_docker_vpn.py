@@ -7,6 +7,13 @@ import sys
 
 choice = sys.argv[1]
 path_to_yaml_file = "/opt/wireguard-server/docker-compose.yaml" #this default value
+with open(path_to_yaml_file, "r") as name_file:
+    try:
+        path_to_config_folder = yaml.safe_load(name_file)
+    except yaml.YAMLError as yerror:
+        print(yerror)
+path_to_config_folder = path_to_config_folder["services"]["wireguard"]["volumes"][0]
+path_to_config_folder = path_to_config_folder[:-8]
 username = getpass.getuser()
 start_message = "\033[36mWireGuard PREgenerator from MaxMur ver 0.1\033[0m" 
 list_to_messa = ("\n            l - show list of users in peer section" +
@@ -87,6 +94,7 @@ def delete_user():
     try:
         choice_for_delete_massive = [int(z) for z in input("\033[33m(submenu)\033[0m IDs: ").split(',')]
     except:
+        choice_for_delete_massive = []
         print('Enter NUMBER or range of number')
         delete_user()
     if len(choice_for_delete_massive) != 0:
@@ -111,7 +119,7 @@ def delete_user():
                 peers = peers[:-1]
                 edit_yaml_file(peers)
                 for j in range(len(choice_for_delete)):
-                    os.system("rm -r /opt/wireguard-server/config/peer_" + massive[choice_for_delete[j]-1] + " > /dev/null 2>&1")
+                    os.system("rm -r "+ path_to_config_folder +"/peer_" + massive[choice_for_delete[j]-1] + " > /dev/null 2>&1")
                 print("User deleted only in list, he anyawy can connect to vpn, if u need delete user then rebuild docker 'I'")
             else:
                 print("Abort.")
@@ -123,7 +131,7 @@ def add_user():
     try:
         choice_for_add = str(input("(submenu) Users: "))
     except:
-        print("Error. Try again.")
+        print("Error. Try again or type q for exit")
         add_user()
     if choice_for_add != "":
         choice_for_add = choice_for_add.split(',')
@@ -154,6 +162,11 @@ def add_user():
                 print('Users only add to list, if u need to connet this user rebuild docker "I"')
             else:
                 print("Abort.")
+        elif choice_for_add == "q":
+            return
+        elif len(choice_for_add) == 1 and choice_for_add[1] == "":
+            print("Error. Try again or typy q for exit")
+            add_user()
 
 def list_activity():
     output = command_shell("docker exec -it wireguard wg", "A")
@@ -163,7 +176,7 @@ def list_activity():
             string = output[i-1].split(" ")
             string = string[1]
             string = string[5:-4]
-            with open("/opt/wireguard-server/config/wg0.conf") as wg_conf:
+            with open(path_to_config_folder + "/wg0.conf") as wg_conf:
                 array = [row.strip() for row in wg_conf]
             for j in range(len(array)):
                 if string in array[j]:
@@ -183,9 +196,11 @@ def add_users_from_list():
                 array = [row.strip() for row in wg_conf]
     except:
         path_to_file = ""
-        print('Error. Try again')
+        print('Error. Incorrect path, try again or type q for exit')
         add_users_from_list()
-    if path_to_file != "":
+    if path_to_file == "q":
+        return
+    elif path_to_file != "":
         peers = "PEERS="
         massive = command_shell("cat " + path_to_yaml_file + " | grep PEERS | tr -d ' '")
         choice_to_save = str(input("Save exist peers? <y/n>"))
@@ -203,7 +218,7 @@ def add_users_from_list():
                 peers += array[p]
             edit_yaml_file(peers)
             print('Users only add to list, if u need to connet this user rebuild docker "I"')
-    elif path_to_file == "q":
+    elif path_to_file == "":
         return
     else:
         print("Abort.")
