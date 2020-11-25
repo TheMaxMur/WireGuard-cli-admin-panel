@@ -1,7 +1,7 @@
 # WireGuard cli admin panel
 
 ### Foreward:
-If you need use api remote, use next instalation on your server. Else, just use api_docker_vpn.py in your host.
+If you need use api remote, use next instalation on your server. Else, just install on server wiregurad in docker with scritp.sh and use api_docker_vpn.py.
 
 ### Instalation for server:
 
@@ -26,5 +26,6 @@ Move api_ssh_server_docker_vpn.py in folder, where locate docker-compose.yaml (d
 $ sudo mv api_ssh_server_docker_vpn.py /opt/wireguard-server/
 ```
 
-So, you install docker with wg in your server, now need create a client, just copy api_ssh_client_docker_vpn.py in a client pc.:
-* copy api_ssh_server_docker_vpn.py
+So, you install docker with wg in your server, now need create a client::
+* copy api_ssh_server_docker_vpn.py on your client pc
+* edit hostname in api_ssh_server_docker_vpn.py
