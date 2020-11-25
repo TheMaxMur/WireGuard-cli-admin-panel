@@ -181,8 +181,7 @@ def add_users_from_list():
                 array = [row.strip() for row in wg_conf]
     except:
         path_to_file = ""
-        print('Error. Try again')
-        add_users_from_list()
+        print('Error. Incorrect path')
     if path_to_file != "":
         peers = "PEERS="
         massive = command_shell("cat " + path_to_yaml_file + " | grep PEERS | tr -d ' '")
