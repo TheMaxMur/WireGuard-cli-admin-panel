@@ -24,7 +24,7 @@ So, you install docker with wg in your server, now need create a client:
 
 #### Usage:
 Programm run as root user
-```bash
+```
 # python3 /opt/wireguard/api_docker_vpn.py
 ```
 
