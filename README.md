@@ -17,10 +17,16 @@ $ cd WireGuard-cli-admin-panel
 $ chmod +x script.sh
 $ sudo bash script.sh
 ```
+
 #### Edit path to files:
 So, you install docker with wg in your server, now need create a client:
 * edit path_to_yaml_file in api_docker_vpn.py
 
+#### Usage:
+Programm run as root user
+```bash
+python3 /opt/wireguard/api_docker_vpn.py
+```
 
 ### Instalation for remote access server:
 
@@ -68,13 +74,57 @@ The key's randomart image is:
 +----[SHA256]-----+
 klar (11:40) ~>
 ```
-For using api in normal mode you want to create a new user with group which can use sudo without password.
+``` bash
+$ ssh-copy-id user@host
+```
+
+For using api in normal mode you want to create a new user which can use sudo without password.
+``` bash
+useradd -g users -G sudo username
+```
+Edit /etc/sudores
+```
+#
+# This file MUST be edited with the 'visudo' command as root.
+#
+# Please consider adding local content in /etc/sudoers.d/ instead of
+# directly modifying this file.
+#
+# See the man page for details on how to write a sudoers file.
+#
+Defaults	env_reset
+Defaults	mail_badpass
+Defaults	secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+# Host alias specification
+
+# User alias specification
+
+# Cmnd alias specification
+
+# User privilege specification
+root	ALL=(ALL:ALL) ALL
+username ALL=(ALL) NOPASSWD: ALL #!!!new string with access!!! 
+
+# Allow members of group sudo to execute any command
+%sudo	ALL=(ALL:ALL) ALL
+
+# See sudoers(5) for more information on "#include" directives:
+
+#includedir /etc/sudoers.d
+
+```
 
 #### Edit path to files, hostnames.
 
 So, you install docker with wg in your server, now need create a client:
-* copy api_ssh_server_docker_vpn.py on your client pc
+* edit path_to_yaml_file in api_ssh_server_docker_vpn.py
 * edit hostname in api_ssh_client_docker_vpn.py
 * edit path_to_wireguard_docker_dir in apt_ssh_client_docker_vpn.py
-* edit path_to_yaml_file in api_ssh_server_docker_vpn.py
+* copy api_ssh_client_docker_vpn.py on your client pc
 
+#### Usage:
+Just run api_ssh_client_docker_vpn.py in your client pc
+```bash
+$ python3 api_ssh_client_docker_vpn.py
+```
