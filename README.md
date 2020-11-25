@@ -28,7 +28,7 @@ Programm run as root user
 python3 /opt/wireguard/api_docker_vpn.py
 ```
 
-### Instalatlion for remote access server:
+### Instalatlion for remote use in server:
 
 For first connect your server.
 
