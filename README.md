@@ -1,6 +1,6 @@
 # WireGuard cli admin panel
 
-### Instalation for use in server:
+### Installation for use in server:
 
 For first connect your server.
 
@@ -28,7 +28,7 @@ Programm run as root user
 python3 /opt/wireguard/api_docker_vpn.py
 ```
 
-### Instalation for remote access server:
+### Instalatlion for remote access server:
 
 For first connect your server.
 
