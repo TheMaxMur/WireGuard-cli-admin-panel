@@ -80,11 +80,11 @@ $ ssh-copy-id user@host
 
 For using api in normal mode you want to create a new user which can use sudo without password.
 ``` bash
-# useradd -g users -G sudo username
+$ sudo useradd -g users -G sudo username
 ```
 Edit /etc/sudores
 ``` bash
-sudo vim /etc/sudores
+$ sudo vim /etc/sudores
 ```
 
 ```
