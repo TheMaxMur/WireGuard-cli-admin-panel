@@ -6,7 +6,7 @@ import yaml
 import sys
 
 choice = sys.argv[1]
-path_to_yaml_file = "/path/to/file/docker-compose.yaml"
+path_to_yaml_file = "/opt/wireguard-server/docker-compose.yaml" #this default value
 username = getpass.getuser()
 start_message = "\033[36mWireGuard PREgenerator from MaxMur ver 0.1\033[0m" 
 list_to_messa = ("\n            l - show list of users in peer section" +

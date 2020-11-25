@@ -2,7 +2,7 @@
 import os
 import subprocess
 
-hostname = 'user@hostname
+hostname = 'user@hostname'
 path_to_wireguard_docker_dir = '/opt/wireguard-server/' #this is default value
 ip = hostname.split("@")
 ip = list(hostname[1])
