@@ -18,5 +18,5 @@ This script install wireguard in docker from dockerhub. You can read [this docum
 
 #### Edit path to files and hostnames.
 
-* So, you install docker with wg, if you need use this api remote do this:
-	* So, you install docker with wg, if you need use this api remote do this: test
+So, you install docker with wg, if you need use this api remote do this:
+* copy api_ssh_server_docker_vpn.py
