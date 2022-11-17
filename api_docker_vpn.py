@@ -56,7 +56,7 @@ initializaion_config()
 config.read(config_dir + 'wg_api.conf')
 
 path_to_config_folder = config['files']['workdir']
-path_to_config_folder = add_slash(path_to_config_folder)
+path_to_config_folder = add_slash(path_to_config_folder) + 'config/'
 path_to_yaml_file = ""
 
 if compose_file_extension(path_to_config_folder) != "":
@@ -71,7 +71,7 @@ else:
     else:
         exit()"""
 
-start_message = "\033[36mWireGuard PREgenerator from MaxMur ver 0.2\033[0m" 
+start_message = "\033[36mWireGuard PREgenerator from MaxMur ver 0.2.1\033[0m" 
 list_to_messa = ("\n            l - show list of users in peer section" +
             "\n            r - raplace list of users in peer selection with existing file" +
             "\n            d - delete user by its id" +
@@ -264,7 +264,7 @@ def list_activity() -> None:
             string = string[5:-4]
             user_name = ""
 
-            with open(path_to_config_folder + "/wg0.conf") as wg_conf:
+            with open(path_to_config_folder + "wg0.conf") as wg_conf:
                 array = [row.strip() for row in wg_conf]
 
             for j in range(len(array)):
