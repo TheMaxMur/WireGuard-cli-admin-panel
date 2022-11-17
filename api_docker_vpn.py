@@ -12,7 +12,7 @@ def add_slash(string: str="") -> str:
     if string[-1] != '/':
         return (string + '/')
 
-    return (string + '/')
+    return (string)
 
 def compose_file_extension(path: str="") -> str:
     if os.path.isfile(path + 'docker-compose.yaml'):
