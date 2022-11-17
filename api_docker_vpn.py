@@ -55,8 +55,8 @@ initializaion_config()
 
 config.read(config_dir + 'wg_api.conf')
 
-wg_dir = config['files']['workdir']
-path_to_config_folder = add_slash(wg_dir) + 'config/'
+wg_dir = add_slash(config['files']['workdir'])
+path_to_config_folder = wg_dir + 'config/'
 path_to_yaml_file = ""
 
 if compose_file_extension(path_to_config_folder) != "":
