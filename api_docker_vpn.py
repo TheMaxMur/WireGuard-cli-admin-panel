@@ -59,7 +59,7 @@ wg_dir = add_slash(config['files']['workdir'])
 path_to_config_folder = wg_dir + 'config/'
 path_to_yaml_file = ""
 
-if compose_file_extension(path_to_config_folder) != "":
+if compose_file_extension(wg_dir) != "":
     path_to_yaml_file = compose_file_extension(wg_dir)
 else:
     print("\033[31mCOMPOSE FILE NOT FOUND\033[0m")
