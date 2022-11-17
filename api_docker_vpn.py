@@ -257,9 +257,10 @@ def add_user() -> None:
 def list_activity() -> None:
     output = command_shell("docker exec -it wireguard wg", "A")
     print()
+
     for i in range(len(output)):
         if "endpoint" in output[i]:
-            string = output[i-1].split(" ")
+            string = output[i-2].split(" ")
             string = string[1]
             string = string[5:-4]
             user_name = ""
