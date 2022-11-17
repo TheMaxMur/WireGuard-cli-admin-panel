@@ -14,16 +14,22 @@ cd WireGuard-cli-admin-panel
 ```
 
 #### Usage:
-Programm run as root user
+Program run as root user
 ```
 sudo python3 /path/to/repo/api_docker_vpn.py
 ```
 
 #### Configuration
-Config file path -- /etc/wireguard_api_client/wg_api.conf
+Config file path (Creating after first running) - /etc/wireguard_api_client/wg_api.conf
+
+Parameters:
+
+*workdir* - Path to wireguard folder with compose file. Default value - /path/to/repo/WireGuard-cli-admin-panel/
+
+Example:
 
 ```
 [files]
-workdir = /path/to/repo/WireGuard-cli-admin-panel/ # docker-compose file path. Default - /path/to/repo/WireGuard-cli-admin-panel/
+workdir = /home/user/WireGuard-cli-admin-panel/
 ```
 
