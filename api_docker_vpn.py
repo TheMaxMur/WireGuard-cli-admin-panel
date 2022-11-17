@@ -55,12 +55,12 @@ initializaion_config()
 
 config.read(config_dir + 'wg_api.conf')
 
-path_to_config_folder = config['files']['workdir']
-path_to_config_folder = add_slash(path_to_config_folder) + 'config/'
+wg_dir = config['files']['workdir']
+path_to_config_folder = add_slash(wg_dir) + 'config/'
 path_to_yaml_file = ""
 
 if compose_file_extension(path_to_config_folder) != "":
-    path_to_yaml_file = compose_file_extension(path_to_config_folder)
+    path_to_yaml_file = compose_file_extension(wg_dir)
 else:
     print("\033[31mCOMPOSE FILE NOT FOUND\033[0m")
     exit()
@@ -71,7 +71,7 @@ else:
     else:
         exit()"""
 
-start_message = "\033[36mWireGuard PREgenerator from MaxMur ver 0.2.1\033[0m" 
+start_message = "\033[36mWireGuard PREgenerator from MaxMur ver 0.2.2\033[0m" 
 list_to_messa = ("\n            l - show list of users in peer section" +
             "\n            r - raplace list of users in peer selection with existing file" +
             "\n            d - delete user by its id" +
